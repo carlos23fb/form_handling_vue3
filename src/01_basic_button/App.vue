@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ButtonRow from "@/components/ButtonRow";
+import ButtonRow from "@/01_basic_button/components/ButtonRow";
 export default {
   name: 'App',
   components: {
@@ -16,14 +16,7 @@ export default {
 </script>
 
 <style>
-/*#app {*/
-/*  font-family: Avenir, Helvetica, Arial, sans-serif;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
-/*  text-align: center;*/
-/*  color: #2c3e50;*/
-/*  margin-top: 60px;*/
-/*}*/
+
 .ui.container{
   margin: 20px 0;
 }
