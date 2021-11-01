@@ -10,6 +10,8 @@
       <div class="field">
         <label >Email</label>
         <input type="text" v-model="fields.email" placeholder="What's yopur email?">
+        <span class="error-field ">{{ fieldErrors.email }}</span>
+
       </div>
       <div class="field">
         <div class="ui inverted divider"></div>
@@ -20,13 +22,14 @@
           <option>Moderate</option>
           <option>Urgent</option>
         </select>
+        <span class="error-field">{{ fieldErrors.urgency }}</span>
       </div>
       <div class="field">
         <div class="ui inverted divider"></div>
         <div class="ui checkbox inverted">
           <input   type="checkbox" v-model="fields.termsAndConditions">
           <label>I accept the terms and conditions</label>
-
+          <span class="error-field"> {{ fieldErrors.termsAndConditions }} </span>
         </div>
 
       </div>
@@ -41,6 +44,22 @@ import {mapActions} from 'vuex'
 
 export default {
   name: "InputForm",
+  data() {
+    return {
+      fields: {
+        name: '',
+        email: '',
+        urgency: '',
+        termsAndConditions: false
+      },
+      fieldErrors:{
+        name: undefined,
+        email: undefined,
+        urgency: undefined,
+        termsAndConditions: undefined
+      }
+    }
+  },
   methods: {
     ...mapActions({
       addClothingItem: 'addClothingItem'
@@ -58,21 +77,14 @@ export default {
       this.fields.termsAndConditions = false;
     }
   },
-  data() {
-    return {
-      fields: {
-        name: '',
-        email: '',
-        urgency: '',
-        termsAndConditions: false
-      },
-      fieldErrors:{
-        name: undefined,
-        email: undefined,
-        urgency: undefined,
-        termsAndConditions: undefined
-      }
-    }
+  validateForm(fields){
+    const errors = {};
+    if(!fields.name) errors.name = "New name Required";
+    if(!fields.email) errors.email = "Email Required";
+    if(!fields.urgency) errors.urgency = "Urgency Required";
+    if(!fields.termsAndConditions) errors.termsAndConditions = "Terms and conditions have to be approved";
+
+    return errors;
   }
 }
 </script>
